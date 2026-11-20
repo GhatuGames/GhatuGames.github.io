@@ -133,6 +133,26 @@ GHATU.catalogo = [
       pc:  { archivo: 'cohete-crash-pc.html',     tamano: '45 KB', sha256: '51fba6d25778369742014c4e637336a3067f44005623f052a62244940f78287b' } }
   },
   {
+    id: 'filo-fade', tipo: 'app', nombre: 'Filo y Fade', version: '1.0', nuevo: true,
+    genero: 'Escuela de barbería paso a paso', etiquetas: ['Educación', 'Barbería', 'Oficios'],
+    portada: 'assets/img/items/filo-fade-portada.webp', icono: 'assets/img/items/filo-fade-icono.webp',
+    resumen: 'Aprende a cortar: 19 cortes paso a paso con número de peine, palanca, alturas, técnica de tijera y diagramas de la cabeza.',
+    descripcion: [
+      'Fades (bajo, medio y alto a piel, taper, burst y drop), buzz, crew, french crop, pompadour, undercut, quiff, clásico con raya, mullet moderno, corte a tijera de caballero, corte infantil, perfilado y degradado de barba y lineup. Cada paso dice con qué peine empezar y terminar en cada zona, si la palanca va abierta o cerrada, la dirección de la máquina, cómo difuminar y a qué altura va cada línea.',
+      'Los pasos de tijera indican la técnica (sobre peine, entre dedos, point-cutting, entresacado, slide cutting), la elevación (0°, 45°, 90°) y el largo de la guía en cm. Incluye guías de peines ↔ mm, palanca, seccionado, difuminado, tijera, seguridad con navaja e higiene, y un modo paso a paso con letra grande que mantiene la pantalla encendida mientras cortas.'
+    ],
+    caracteristicas: ['19 cortes · 192 pasos', 'Peine y palanca por zona', 'Diagramas lado/atrás/frente', 'Modo paso a paso con pantalla encendida'],
+    requisitos: 'Android 6.0+ · PC con cualquier navegador moderno',
+    capturas: [
+      { img: 'assets/img/items/filo-fade-1.webp', alt: 'Catálogo de cortes en el teléfono', vertical: true },
+      { img: 'assets/img/items/filo-fade-2.webp', alt: 'Modo paso a paso con diagrama de la cabeza', vertical: true },
+      { img: 'assets/img/items/filo-fade-3.webp', alt: 'Modo paso a paso en la versión de PC' }
+    ],
+    descargas: { tag: 'filo-fade-v1.0',
+      apk: { archivo: 'filo-fade-android.apk', tamano: '553 KB', sha256: 'edc46066701b65ea7c087a28305227a02152e2f375135f49e34ac3b17928dd7e' },
+      pc:  { archivo: 'filo-fade-pc.html',     tamano: '393 KB', sha256: '52022c64cc04e8a82cfe0cc8a924fe7b179be30cd7e7de0bef5518d2f9bc6268' } }
+  },
+  {
     id: 'winay-english', tipo: 'app', nombre: 'Wiñay English', version: '1.0', nuevo: true,
     genero: 'Inglés de cero a avanzado', etiquetas: ['Educación', 'Inglés', 'A1–C1'],
     portada: 'assets/img/items/winay-english-portada.webp', icono: 'assets/img/items/winay-english-icono.webp',
