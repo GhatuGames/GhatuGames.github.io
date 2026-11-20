@@ -9,6 +9,8 @@ Notepad++… o el editor de la propia página de GitHub):
 
   data/catalogo.js     -> juegos, apps, versiones, tamaños y ENLACES DE DESCARGA
   data/tutoriales.js   -> lista de tutoriales
+  data/publicaciones.js -> noticias / publicaciones (con botón de descarga)
+  generador.html       -> formulario que ARMA los bloques por ti (recomendado)
   tutoriales/*.md      -> el texto de cada tutorial
 
 Los demás archivos (assets/js/sitio.js, assets/css/estilo.css, *.html)
@@ -174,3 +176,47 @@ Para cada juego/app:
 Si luego compran un dominio (ej.: ghatugames.com): Settings -> Pages ->
 "Custom domain", escribe el dominio y sigue las instrucciones de DNS de
 GitHub. No hay que cambiar nada de la web: todos los enlaces son relativos.
+
+--------------------------------------------------------------------------
+ 9) PUBLICACIONES / NOVEDADES  (data/publicaciones.js)
+--------------------------------------------------------------------------
+Noticias, lanzamientos o descargas, con imagen y un botón de descarga a
+CUALQUIER enlace: Mega, Google Drive, MediaFire, Dropbox o una Release de
+GitHub (hasta 2 GB por archivo). La web detecta el servicio sola.
+1. (Opcional) Sube la imagen a assets/img/publicaciones/ (horizontal ~800x420).
+2. Abre generador.html, pestaña "Publicación", llena y copia el bloque.
+3. Pégalo en data/publicaciones.js justo debajo de
+       GHATU.publicaciones = [
+   (la más nueva va primero; las 3 primeras salen en el Inicio).
+Formato del bloque (por si lo escribes a mano):
+  {
+    id: 'mi-noticia',
+    titulo: 'Título', fecha: '2026-12-01', categoria: 'Noticias',
+    imagen: 'assets/img/publicaciones/mi-noticia.webp',
+    resumen: 'Una o dos frases.',
+    texto: [ 'Párrafo 1 con **negrita** y [enlace](https://...)', 'Párrafo 2' ],
+    descarga: { texto: 'Descargar', url: 'https://mega.nz/...', tamano: '350 MB' }
+  },
+Sin botón de descarga:  descarga: null
+Enlace directo a una publicación:  publicaciones.html#mi-noticia
+En Google Drive el archivo debe estar en "Cualquier persona con el enlace".
+
+--------------------------------------------------------------------------
+ 10) GENERADOR DE BLOQUES (generador.html) — herramienta del equipo
+--------------------------------------------------------------------------
+https://ghatugames.github.io/generador.html  (no aparece en el menú ni en
+Google; guárdala en favoritos). Sirve para juegos/apps y publicaciones:
+- Completa id, tag y nombres de archivo automáticamente.
+- Calcula tamaño y huella SHA-256 eligiendo el archivo (no se sube nada).
+- Revisa errores (campos en rojo) y avisa si el id ya existe.
+- Botón "Copiar bloque" y te dice en qué archivo y línea pegarlo.
+Funciona sin internet una vez abierta (también con doble clic en el PC).
+
+--------------------------------------------------------------------------
+ 11) TODO DESDE EL CELULAR
+--------------------------------------------------------------------------
+Guía con capturas en la web:
+  https://ghatugames.github.io/tutorial.html?id=subir-desde-celular
+Resumen: Releases (subir APK/HTML) -> generador (copiar bloque) -> subir
+imágenes (Add file > Upload files) -> editar data/catalogo.js o
+data/publicaciones.js con el lápiz ✏️ -> Commit changes -> esperar 1-2 min.

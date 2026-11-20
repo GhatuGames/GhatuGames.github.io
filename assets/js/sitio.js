@@ -2,7 +2,7 @@
    agregar juegos, apps o tutoriales: edita data/catalogo.js y data/tutoriales.js */
 (function () {
   'use strict';
-  var G = window.GHATU || {}, S = G.sitio || {}, CAT = G.catalogo || [], TUT = G.tutoriales || [];
+  var G = window.GHATU || {}, S = G.sitio || {}, CAT = G.catalogo || [], TUT = G.tutoriales || [], PUB = G.publicaciones || [];
   var $ = function (s, r) { return (r || document).querySelector(s); };
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function param(n) { var m = location.search.match(new RegExp('[?&]' + n + '=([^&]*)')); return m ? decodeURIComponent(m[1].replace(/\+/g, ' ')) : ''; }
@@ -11,7 +11,7 @@
   var main = $('#contenido');
 
   /* ---------- cabecera y pie ---------- */
-  var MENU = [['index', 'index.html', 'Inicio'], ['juegos', 'juegos.html', 'Juegos'], ['apps', 'apps.html', 'Apps'], ['tutoriales', 'tutoriales.html', 'Tutoriales'], ['acerca', 'acerca.html', 'Acerca de']];
+  var MENU = [['index', 'index.html', 'Inicio'], ['juegos', 'juegos.html', 'Juegos'], ['apps', 'apps.html', 'Apps'], ['publicaciones', 'publicaciones.html', 'Publicaciones'], ['tutoriales', 'tutoriales.html', 'Tutoriales'], ['acerca', 'acerca.html', 'Acerca de']];
   function activo(id) {
     if (pagina === 'ficha') { var it = buscar(param('id')); return id === (it && it.tipo === 'app' ? 'apps' : 'juegos'); }
     if (pagina === 'tutorial') return id === 'tutoriales';
@@ -45,9 +45,39 @@
       '<div class="botones">' + botonesDescarga(it) + '</div><a class="mas" href="' + urlFicha(it) + '">Ver detalles y capturas →</a></div></article>';
   }
   function rejilla(lista) { return lista.length ? '<div class="rejilla">' + lista.map(tarjeta).join('') + '</div>' : '<div class="vacio">Pronto habrá novedades aquí.</div>'; }
-  var ICONO_CAT = { Android: '🤖', PC: '💻', Apps: '🎧', Seguridad: '🛡️' };
+  var ICONO_CAT = { Android: '🤖', PC: '💻', Apps: '🎧', Seguridad: '🛡️', Equipo: '📲' };
   function tuto(t) {
     return '<a class="tuto" href="tutorial.html?id=' + encodeURIComponent(t.id) + '"><span class="num" aria-hidden="true">' + (ICONO_CAT[t.categoria] || '📘') + '</span><span><small>' + esc(t.categoria) + ' · ' + esc(t.minutos) + ' min' + (t.youtube ? ' · ▶ video' : '') + '</small><h3>' + esc(t.titulo) + '</h3><p>' + esc(t.resumen) + '</p></span></a>';
+  }
+
+  /* ---------- publicaciones ---------- */
+  function urlSegura(u) { u = String(u || '').trim(); return /^(https?:\/\/|[a-z0-9_\-./]+(\?[^\s]*)?$)/i.test(u) && !/^(javascript|data):/i.test(u) ? u : ''; }
+  function servicio(u) {
+    var h = (String(u).match(/^https?:\/\/([^\/?#]+)/i) || [])[1] || '';
+    if (/mega\.(nz|io)$/i.test(h)) return ['Mega', '☁️'];
+    if (/drive\.google\.com$|docs\.google\.com$/i.test(h)) return ['Google Drive', '📁'];
+    if (/mediafire\.com$/i.test(h)) return ['MediaFire', '🔥'];
+    if (/github\.com$/i.test(h) && /\/releases\//.test(u)) return ['GitHub', '📦'];
+    if (/github\.(com|io)$/i.test(h)) return ['GitHub', '🌐'];
+    if (/dropbox\.com$/i.test(h)) return ['Dropbox', '📦'];
+    if (/onedrive\.live\.com$|1drv\.ms$|sharepoint\.com$/i.test(h)) return ['OneDrive', '☁️'];
+    if (/youtube\.com$|youtu\.be$/i.test(h)) return ['YouTube', '▶️'];
+    return h ? [h.replace(/^www\./, ''), '🔗'] : ['', '🔗'];
+  }
+  function inlineMd(t) { var h = G.markdown ? G.markdown(String(t)) : '<p>' + esc(t) + '</p>'; return h; }
+  function botonPub(d) {
+    if (!d || !urlSegura(d.url)) return '';
+    var sv = servicio(d.url), ext = /^https?:/i.test(d.url);
+    return '<a class="btn" href="' + esc(d.url) + '"' + (ext ? ' target="_blank" rel="noopener"' : '') + ' data-descarga="pub"><span><span class="ico" aria-hidden="true">' + sv[1] + '</span> ' + esc(d.texto || 'Descargar') + '</span><small>' + esc([sv[0], d.tamano].filter(Boolean).join(' · ')) + '</small></a>';
+  }
+  function pubCorta(p) {
+    return '<article class="tarjeta pub-corta"><a class="portada" href="publicaciones.html#' + encodeURIComponent(p.id) + '" aria-label="' + esc(p.titulo) + '">' + (urlSegura(p.imagen) ? '<img src="' + esc(p.imagen) + '" alt="" loading="lazy" width="800" height="420">' : '<span class="sin-img" aria-hidden="true">📰</span>') + '</a>' +
+      '<div class="cuerpo"><div class="genero">' + esc(p.categoria) + ' · ' + fecha(p.fecha) + '</div><h3><a href="publicaciones.html#' + encodeURIComponent(p.id) + '">' + esc(p.titulo) + '</a></h3><p>' + esc(p.resumen) + '</p><a class="mas" href="publicaciones.html#' + encodeURIComponent(p.id) + '">Leer más →</a></div></article>';
+  }
+  function pubLarga(p) {
+    return '<article class="pub" id="' + esc(p.id) + '" data-cat="' + esc(p.categoria) + '">' + (urlSegura(p.imagen) ? '<img class="pub-img" src="' + esc(p.imagen) + '" alt="" loading="lazy" width="800" height="420">' : '') +
+      '<div class="pub-cuerpo"><div class="genero">' + esc(p.categoria) + ' · <time datetime="' + esc(p.fecha) + '">' + fecha(p.fecha) + '</time></div><h2>' + esc(p.titulo) + '</h2><div class="prosa">' + (p.texto || []).map(inlineMd).join('') + '</div>' +
+      (botonPub(p.descarga) ? '<div class="pub-boton">' + botonPub(p.descarga) + '</div>' : '') + '<a class="enlace-pub" href="#' + esc(p.id) + '">🔗 Enlace a esta publicación</a></div></article>';
   }
   var juegos = CAT.filter(function (i) { return i.tipo !== 'app'; }), apps = CAT.filter(function (i) { return i.tipo === 'app'; });
   function cabeza(t, p) { return '<section class="cabeza-pagina"><div class="envoltura"><h1>' + t + '</h1><p>' + p + '</p></div></section>'; }
@@ -63,6 +93,7 @@
       '<div class="envoltura"><div class="ventajas"><div class="ventaja"><i>📴</i>Funcionan sin internet</div><div class="ventaja"><i>🚫</i>Sin anuncios</div><div class="ventaja"><i>🔒</i>Sin permisos raros</div><div class="ventaja"><i>🆓</i>Gratis</div></div></div></section>' +
       '<section class="seccion"><div class="envoltura"><div class="titulo-seccion"><div><h2>🎮 Juegos</h2><p>Acción, estrategia y diversión andina.</p></div><a class="btn borde" href="juegos.html">Ver todos</a></div>' + rejilla(juegos.slice(0, 3)) + '</div></section>' +
       '<section class="seccion"><div class="envoltura"><div class="titulo-seccion"><div><h2>📚 Apps y programas</h2><p>Aprende inglés jugando, sin conexión.</p></div><a class="btn borde" href="apps.html">Ver todas</a></div>' + rejilla(apps.slice(0, 2)) + '</div></section>' +
+      (PUB.length ? '<section class="seccion"><div class="envoltura"><div class="titulo-seccion"><div><h2>📰 Publicaciones</h2><p>Novedades, lanzamientos y descargas.</p></div><a class="btn borde" href="publicaciones.html">Ver todas</a></div><div class="rejilla">' + PUB.slice(0, 3).map(pubCorta).join('') + '</div></div></section>' : '') +
       '<section class="seccion"><div class="envoltura"><div class="titulo-seccion"><div><h2>🛠️ Tutoriales</h2><p>Guías cortas para instalar y jugar.</p></div><a class="btn borde" href="tutoriales.html">Ver todos</a></div><div class="lista-tutos">' + TUT.slice(0, 2).map(tuto).join('') + '</div></div></section>';
   };
   P.juegos = function () { return cabeza('🎮 Juegos', 'Todos nuestros juegos son gratis, sin anuncios y funcionan sin internet. Descarga el <b>APK</b> para Android o la <b>Versión PC</b> (se abre con doble clic en el navegador).') + '<section class="seccion"><div class="envoltura">' + rejilla(juegos) + '</div></section>'; };
@@ -84,6 +115,12 @@
       (hashes ? '<div class="panel"><h3>Huella SHA-256</h3><p style="font-size:14px;color:var(--suave)">Para <a href="tutorial.html?id=verificar-descarga">comprobar que el archivo es original</a>.</p>' + hashes + '</div>' : '') +
       '</aside></div></div>';
   };
+  P.publicaciones = function () {
+    var cats = []; PUB.forEach(function (p) { if (cats.indexOf(p.categoria) < 0) cats.push(p.categoria); });
+    return cabeza('📰 Publicaciones', 'Novedades de Ghatu Games: lanzamientos, proyectos y descargas.') + '<section class="seccion" style="padding-top:6px"><div class="envoltura">' +
+      (cats.length > 1 ? '<div class="filtros" role="group" aria-label="Categoría" style="margin-bottom:18px"><button type="button" class="activo" data-c="">Todas</button>' + cats.map(function (c) { return '<button type="button" data-c="' + esc(c) + '">' + esc(c) + '</button>'; }).join('') + '</div>' : '') +
+      '<div class="lista-pubs">' + (PUB.length ? PUB.map(pubLarga).join('') : '<div class="vacio">Pronto habrá publicaciones.</div>') + '</div></div></section>';
+  };
   P.tutoriales = function () {
     var cats = []; TUT.forEach(function (t) { if (cats.indexOf(t.categoria) < 0) cats.push(t.categoria); });
     return cabeza('🛠️ Tutoriales', 'Guías paso a paso para instalar, jugar y aprovechar nuestras apps.') + '<section class="seccion" style="padding-top:6px"><div class="envoltura"><div class="buscador"><input type="search" id="q" placeholder="Buscar tutorial…" aria-label="Buscar tutorial"><div class="filtros" role="group" aria-label="Categoría"><button type="button" class="activo" data-c="">Todos</button>' +
@@ -103,9 +140,10 @@
       '<div class="caja"><h3>💗 Nuestra idea</h3><p>Juegos divertidos con sabor andino y apps que ayudan a aprender, sin anuncios ni compras escondidas. Que cualquiera pueda jugar aunque tenga un teléfono sencillo o poca señal.</p></div>' +
       '<div class="caja"><h3>🔒 Tu privacidad</h3><p>Nuestras apps no piden permisos de internet, cámara ni contactos, y no recogen datos. Tus avances se guardan solo en tu dispositivo.</p></div>' +
       '<div class="caja"><h3>📦 Descargas seguras</h3><p>Todos los archivos se publican en nuestra página de GitHub con su huella SHA-256 para que puedas <a href="tutorial.html?id=verificar-descarga">comprobar que son originales</a>.</p></div>' +
-      '</div><div class="caja" style="margin-top:16px;text-align:center"><img src="assets/img/logo-256.webp" alt="" width="120" height="120" style="width:120px;margin:0 auto 10px;border-radius:50%;border:5px solid var(--oro)"><h3>¿Ideas o problemas?</h3><p>' +
+      '</div><div class="caja" style="margin-top:16px"><h3>🎸 También hacemos webs</h3><p>Hicimos la página oficial de <b>Six Circle</b>, banda boliviana de rock y metal: música, videos y todas sus plataformas.</p><a class="btn borde" href="https://ghatugames.github.io/sixcircle/" target="_blank" rel="noopener">Visitar la web de Six Circle ↗</a></div><div class="caja" style="margin-top:16px;text-align:center"><img src="assets/img/logo-256.webp" alt="" width="120" height="120" style="width:120px;margin:0 auto 10px;border-radius:50%;border:5px solid var(--oro)"><h3>¿Ideas o problemas?</h3><p>' +
       (S.correo ? 'Escríbenos a <a href="mailto:' + esc(S.correo) + '">' + esc(S.correo) + '</a>.' : 'Muy pronto publicaremos nuestros canales de contacto.') + '</p>' + (redes ? '<p class="pie" style="justify-content:center;padding:0">' + redes + '</p>' : '') + '</div></div></section>';
   };
+  P.generador = function () { return '<div id="generador"></div>'; };
   P['404'] = function () { return '<div class="envoltura"><div class="caja aviso" style="margin-top:50px"><img src="assets/img/logo-256.webp" alt="" width="120" height="120" style="width:120px;margin:0 auto 10px;border-radius:50%;border:5px solid var(--oro)"><h1>¡Uy! 404</h1><p>Esta página se escapó como llama asustada. Volvamos al inicio o mira nuestros juegos.</p><a class="btn" href="index.html">Ir al inicio</a></div></div>'; };
 
   main.insertAdjacentHTML('beforeend', (P[pagina] || P['404'])());
@@ -121,6 +159,10 @@
     q.addEventListener('input', pintar);
     main.querySelectorAll('.filtros button').forEach(function (b) { b.addEventListener('click', function () { cat = b.getAttribute('data-c'); main.querySelectorAll('.filtros button').forEach(function (x) { x.classList.toggle('activo', x === b); }); pintar(); }); });
     pintar();
+  }
+  if (pagina === 'publicaciones') {
+    main.querySelectorAll('.filtros button').forEach(function (b) { b.addEventListener('click', function () { var c = b.getAttribute('data-c'); main.querySelectorAll('.filtros button').forEach(function (x) { x.classList.toggle('activo', x === b); }); main.querySelectorAll('.pub').forEach(function (a) { a.hidden = !!c && a.getAttribute('data-cat') !== c; }); }); });
+    if (location.hash) { var dest = document.getElementById(decodeURIComponent(location.hash.slice(1))); if (dest) setTimeout(function () { dest.scrollIntoView(); dest.classList.add('resaltar'); }, 50); }
   }
   if (pagina === 'tutorial' && $('#prosa')) {
     var t = TUT.filter(function (x) { return x.id === param('id'); })[0], prosa = $('#prosa');

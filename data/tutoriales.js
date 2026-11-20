@@ -32,6 +32,14 @@ GHATU.tutoriales = [
     youtube: ''
   },
   {
+    id: 'subir-desde-celular',
+    titulo: 'Cómo subir tus juegos, programas y publicaciones desde el celular',
+    resumen: 'Para el equipo: sube APK y versiones PC a Releases, arma el bloque con el generador y edita los datos en GitHub, todo desde el teléfono.',
+    categoria: 'Equipo', fecha: '2026-11-20', minutos: 6,
+    archivo: 'tutoriales/subir-desde-celular.md',
+    youtube: ''
+  },
+  {
     id: 'verificar-descarga',
     titulo: 'Cómo comprobar que la descarga es original',
     resumen: 'Usa la huella SHA-256 para confirmar que el archivo que bajaste es exactamente el que publicamos.',

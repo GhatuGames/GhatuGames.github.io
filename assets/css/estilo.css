@@ -143,3 +143,38 @@ main{flex:1;outline:none}
 .pie nav{display:flex;gap:14px;flex-wrap:wrap}.pie nav a{color:var(--suave);text-decoration:none}.pie nav a:hover{color:var(--oro)}
 .vacio{padding:30px;text-align:center;color:var(--suave)}
 @media (max-width:480px){.envoltura{padding:0 14px}.rejilla{grid-template-columns:1fr}.lista-tutos{grid-template-columns:1fr}.botones .btn{font-size:13.5px}}
+/* publicaciones */
+@media (max-width:980px) and (min-width:821px){.menu a{padding:8px 9px;font-size:14px}}
+.lista-pubs{display:grid;gap:22px;max-width:860px}
+.pub{background:linear-gradient(180deg,var(--tarjeta2),var(--tarjeta));border:1px solid var(--linea);border-radius:var(--radio);overflow:hidden;scroll-margin-top:80px}
+.pub.resaltar{border-color:var(--oro);box-shadow:0 0 0 3px rgba(255,207,74,.25)}
+.pub-img{width:100%;aspect-ratio:40/21;object-fit:cover}
+.pub-cuerpo{padding:18px 20px 20px}.pub-cuerpo h2{font-size:clamp(22px,3.4vw,30px);margin:.1em 0 .4em}
+.pub-cuerpo .prosa{font-size:16.5px}
+.pub-boton{display:flex;margin:6px 0 10px}.pub-boton .btn{flex-direction:column;gap:0;line-height:1.25;padding:10px 20px;max-width:100%}
+.enlace-pub{font-size:13px;color:var(--suave);text-decoration:none}.enlace-pub:hover{color:var(--oro)}
+.sin-img{display:grid;place-items:center;height:100%;font-size:54px}
+.pub-corta .portada{aspect-ratio:40/21}
+/* generador */
+.gen{max-width:860px}
+.gen fieldset{border:1px solid var(--linea);border-radius:var(--radio);padding:16px;margin:0 0 16px;background:var(--tarjeta)}
+.gen legend{font-weight:900;padding:0 8px;color:var(--oro)}
+.campo{display:flex;flex-direction:column;gap:4px;margin-bottom:12px;min-width:0}
+.campo label{font-weight:800;font-size:14.5px}.campo small{color:var(--suave);font-size:12.5px}
+.campo input,.campo textarea,.campo select{width:100%;min-height:44px;padding:10px 12px;border-radius:12px;border:2px solid var(--linea);background:#140a1b;color:var(--texto);font:inherit;font-size:16px}
+.campo textarea{min-height:96px;resize:vertical}
+.campo input:focus,.campo textarea:focus,.campo select:focus{outline:none;border-color:var(--rosa)}
+.campo.error input,.campo.error textarea,.campo.error select{border-color:#ff5a5a}
+.campo .msg{color:#ff8a8a;font-size:13px;font-weight:700;display:none}.campo.error .msg{display:block}
+.fila{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0 14px}
+.check{display:flex;align-items:center;gap:10px;font-weight:700;min-height:44px}.check input{width:22px;height:22px}
+.pestanas{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 16px}
+.pestanas button{min-height:46px;padding:8px 18px;border-radius:999px;border:2px solid var(--linea);background:var(--tarjeta);color:var(--suave);font-weight:800;font-size:15px;cursor:pointer}
+.pestanas button.activo{background:linear-gradient(135deg,var(--rosa),#b52a8a);color:#fff;border-color:transparent}
+.resultado{position:relative;margin-top:10px}
+.resultado pre{background:#0b0410;border:1px solid var(--linea);border-radius:14px;padding:14px;overflow:auto;max-height:420px;font:13px/1.5 ui-monospace,Consolas,monospace;white-space:pre-wrap;word-break:break-word}
+.aviso-ok{background:rgba(80,220,140,.1);border:1px solid rgba(80,220,140,.4);border-radius:12px;padding:10px 14px;margin:10px 0;font-weight:700}
+.aviso-mal{background:rgba(255,90,90,.1);border:1px solid rgba(255,90,90,.45);border-radius:12px;padding:10px 14px;margin:10px 0;font-weight:700}
+.archivo-calc{font-size:13px;color:var(--suave)}
+[hidden]{display:none!important}
+.prosa code{overflow-wrap:anywhere;word-break:break-word}.prosa p,.prosa li{overflow-wrap:anywhere}
