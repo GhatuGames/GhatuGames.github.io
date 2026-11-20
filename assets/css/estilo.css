@@ -1,0 +1,145 @@
+/* Ghatu Games — estilo oscuro y juguetón (rosa peludo + aureola dorada + cuernos rojos) */
+:root{
+  --fondo:#14081c;--fondo2:#1d0d29;--tarjeta:#24112f;--tarjeta2:#2e1640;--linea:rgba(255,120,190,.18);
+  --texto:#fbeef6;--suave:#c9a9c0;--rosa:#ff3d8a;--rosa2:#ff79b4;--oro:#ffcf4a;--rojo:#e8303a;--azul:#4fc3ff;
+  --radio:20px;--sombra:0 10px 30px rgba(0,0,0,.35);--max:1180px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100vh;display:flex;flex-direction:column;background:var(--fondo);color:var(--texto);font:16px/1.6 system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;overflow-x:hidden;
+  background-image:radial-gradient(900px 500px at 85% -10%,rgba(255,61,138,.22),transparent 60%),radial-gradient(700px 500px at -10% 30%,rgba(255,120,40,.12),transparent 60%),radial-gradient(800px 600px at 50% 120%,rgba(120,40,200,.18),transparent 60%);background-attachment:fixed}
+a{color:var(--rosa2)}a:hover{color:var(--oro)}
+img{max-width:100%;display:block}
+h1,h2,h3{line-height:1.15;margin:0 0 .5em;font-family:"Trebuchet MS","Arial Rounded MT Bold",system-ui,sans-serif;font-weight:900;letter-spacing:-.01em}
+h1{font-size:clamp(30px,6vw,52px)}h2{font-size:clamp(24px,4vw,34px)}h3{font-size:20px}
+p{margin:0 0 1em}
+.saltar{position:absolute;left:-999px;top:8px;z-index:100;background:var(--oro);color:#000;padding:8px 14px;border-radius:10px}.saltar:focus{left:8px}
+:focus-visible{outline:3px solid var(--oro);outline-offset:3px;border-radius:8px}
+.envoltura{width:100%;max-width:var(--max);margin:0 auto;padding:0 18px}
+main{flex:1;outline:none}
+/* cabecera */
+#cabecera{position:sticky;top:0;z-index:20;background:rgba(20,8,28,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--linea)}
+.barra{display:flex;align-items:center;gap:14px;height:64px}
+.marca{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--texto);font-weight:900;font-size:19px;font-family:"Trebuchet MS",system-ui,sans-serif;white-space:nowrap}
+.marca img{width:40px;height:40px;border-radius:50%;border:2px solid var(--oro);box-shadow:0 0 0 2px var(--rosa),0 0 18px rgba(255,61,138,.55)}
+.marca:hover{color:var(--texto)}
+.menu{margin-left:auto;display:flex;gap:4px}
+.menu a{padding:8px 13px;border-radius:999px;text-decoration:none;color:var(--suave);font-weight:700;font-size:15px}
+.menu a:hover{color:var(--texto);background:rgba(255,255,255,.06)}
+.menu a.activo{color:#fff;background:linear-gradient(135deg,var(--rosa),#b52a8a)}
+.boton-menu{display:none;margin-left:auto;width:44px;height:44px;border-radius:12px;border:1px solid var(--linea);background:var(--tarjeta);color:var(--texto);font-size:22px;cursor:pointer}
+@media (max-width:820px){
+  .boton-menu{display:grid;place-items:center}
+  .menu{position:absolute;left:0;right:0;top:64px;flex-direction:column;gap:2px;padding:10px 14px 16px;background:rgba(20,8,28,.98);border-bottom:1px solid var(--linea);display:none}
+  .menu.abierto{display:flex}
+  .menu a{padding:12px 14px;font-size:17px}
+}
+/* botones */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:10px 18px;border-radius:14px;font-weight:800;text-decoration:none;border:0;cursor:pointer;font-size:15px;transition:transform .12s,box-shadow .12s;color:#fff;background:linear-gradient(135deg,var(--rosa),#c0267c);box-shadow:0 6px 18px rgba(255,61,138,.35)}
+.btn:hover{transform:translateY(-2px);color:#fff;box-shadow:0 10px 24px rgba(255,61,138,.45)}
+.btn.oro{color:#2a1300;background:linear-gradient(135deg,#ffe07a,var(--oro) 50%,#ffae2b);box-shadow:0 6px 18px rgba(255,190,60,.3)}.btn.oro:hover{color:#2a1300}
+.btn.borde{background:transparent;border:2px solid var(--linea);box-shadow:none;color:var(--texto)}.btn.borde:hover{border-color:var(--rosa2)}
+.btn .ico{font-size:18px;line-height:1}
+.btn small{font-weight:600;opacity:.8;font-size:12px}
+/* héroe */
+.heroe{padding:46px 0 30px}
+.heroe .envoltura.dos{display:grid;grid-template-columns:1.15fr .85fr;gap:30px;align-items:center}
+.sello{display:inline-flex;align-items:center;gap:8px;padding:4px 14px 4px 4px;border:2px solid rgba(255,95,160,.9);border-radius:999px;background:rgba(24,8,22,.82);font-weight:900;margin-bottom:16px}
+.sello img{width:32px;height:32px;border-radius:50%;border:2px solid var(--oro)}
+.sello small{display:block;font-size:10px;color:#ffc9dc;line-height:1}.sello b{font-size:14px;line-height:1.1}
+.heroe h1 span{background:linear-gradient(90deg,var(--rosa2),var(--oro));-webkit-background-clip:text;background-clip:text;color:transparent}
+.heroe p.lead{font-size:clamp(17px,2.2vw,20px);color:var(--suave);max-width:560px}
+.acciones{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px}
+.logo-grande{position:relative;justify-self:center;width:min(360px,80vw);aspect-ratio:1}
+.logo-grande img{width:100%;height:100%;border-radius:50%;border:10px solid var(--oro);box-shadow:0 0 0 6px var(--rosa),0 0 60px 10px rgba(255,80,60,.45);animation:flotar 5s ease-in-out infinite}
+.logo-grande:before{content:"";position:absolute;inset:-12%;border-radius:50%;background:radial-gradient(circle,rgba(255,61,138,.35),transparent 65%);z-index:-1}
+@keyframes flotar{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-10px) rotate(2deg)}}
+@media (prefers-reduced-motion:reduce){.logo-grande img{animation:none}html{scroll-behavior:auto}}
+@media (max-width:820px){.heroe{padding:26px 0 10px}.heroe .envoltura.dos{grid-template-columns:1fr;text-align:center}.heroe p.lead{margin-left:auto;margin-right:auto}.acciones{justify-content:center}.logo-grande{width:min(250px,64vw);order:-1}}
+.ventajas{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:26px 0 8px}
+.ventaja{background:var(--tarjeta);border:1px solid var(--linea);border-radius:16px;padding:14px;display:flex;gap:10px;align-items:center;font-weight:700;font-size:14.5px}
+.ventaja i{font-style:normal;font-size:24px}
+@media (max-width:820px){.ventajas{grid-template-columns:repeat(2,1fr)}}
+/* secciones */
+.seccion{padding:30px 0}
+.titulo-seccion{display:flex;align-items:end;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.titulo-seccion h2{margin:0}.titulo-seccion p{margin:0;color:var(--suave)}
+.cabeza-pagina{padding:34px 0 8px}.cabeza-pagina p{color:var(--suave);max-width:720px;font-size:17px}
+/* tarjetas */
+.rejilla{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px}
+.tarjeta{display:flex;flex-direction:column;background:linear-gradient(180deg,var(--tarjeta2),var(--tarjeta));border:1px solid var(--linea);border-radius:var(--radio);overflow:hidden;box-shadow:var(--sombra);transition:transform .15s,border-color .15s}
+.tarjeta:hover{transform:translateY(-4px);border-color:rgba(255,121,180,.5)}
+.portada{position:relative;display:block;aspect-ratio:16/9;background:#0c0510;overflow:hidden}
+.portada img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.tarjeta:hover .portada img{transform:scale(1.04)}
+.cinta{position:absolute;top:10px;left:10px;padding:3px 10px;border-radius:999px;background:var(--oro);color:#2a1300;font-weight:900;font-size:12px;letter-spacing:.04em;text-transform:uppercase}
+.icono-item{position:absolute;right:10px;bottom:-22px;width:56px;height:56px;border-radius:16px;border:3px solid var(--tarjeta2);box-shadow:0 6px 14px rgba(0,0,0,.4);background:#000}
+.cuerpo{padding:16px 16px 18px;display:flex;flex-direction:column;flex:1}
+.cuerpo h3{margin:0 0 4px}.cuerpo h3 a{color:var(--texto);text-decoration:none}.cuerpo h3 a:hover{color:var(--oro)}
+.genero{font-size:13px;color:var(--rosa2);font-weight:800;text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px}
+.cuerpo p{color:var(--suave);font-size:15px;flex:1}
+.meta{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 12px}
+.chip{display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid var(--linea);font-size:12.5px;font-weight:700;color:var(--texto)}
+.botones{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.botones .btn{padding:9px 10px;font-size:14px;flex-direction:column;gap:0;line-height:1.2}
+.mas{display:inline-block;margin-top:10px;font-weight:800;font-size:14px;text-decoration:none}
+/* ficha */
+.migas{font-size:14px;color:var(--suave);margin:20px 0 10px}.migas a{color:var(--suave)}
+.ficha{display:grid;grid-template-columns:1.25fr .75fr;gap:24px;align-items:start}
+.ficha .portada{border-radius:var(--radio);border:1px solid var(--linea)}
+.panel{background:var(--tarjeta);border:1px solid var(--linea);border-radius:var(--radio);padding:18px}
+.panel+.panel{margin-top:14px}
+.panel .btn{width:100%;margin-bottom:10px}
+.datos{list-style:none;margin:0;padding:0}.datos li{display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--linea);font-size:14.5px}.datos li:last-child{border:0}.datos span{color:var(--suave)}
+.hash{font:12px/1.4 ui-monospace,Consolas,monospace;word-break:break-all;color:var(--suave);background:rgba(0,0,0,.25);padding:8px;border-radius:10px;margin:4px 0 10px}
+.lista-check{list-style:none;padding:0;margin:0 0 1em}.lista-check li{padding:5px 0 5px 28px;position:relative}.lista-check li:before{content:"★";position:absolute;left:4px;color:var(--oro)}
+.capturas{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-top:10px}
+.capturas button{padding:0;border:1px solid var(--linea);border-radius:14px;overflow:hidden;background:#0c0510;cursor:zoom-in;aspect-ratio:16/10}
+.capturas button.vertical{aspect-ratio:9/16;max-height:420px}
+.capturas img{width:100%;height:100%;object-fit:cover}
+.capturas:has(.vertical){grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+@media (max-width:900px){.ficha{grid-template-columns:1fr}}
+.visor{position:fixed;inset:0;z-index:50;background:rgba(5,2,8,.92);display:grid;place-items:center;padding:20px;cursor:zoom-out}
+.visor img{max-width:100%;max-height:88vh;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+.visor p{position:absolute;bottom:14px;left:0;right:0;text-align:center;color:var(--suave);margin:0}
+.visor button{position:absolute;top:14px;right:14px;width:44px;height:44px;border-radius:12px;border:0;background:var(--tarjeta2);color:#fff;font-size:22px;cursor:pointer}
+/* tutoriales */
+.buscador{display:flex;gap:10px;flex-wrap:wrap;margin:6px 0 18px}
+.buscador input{flex:1;min-width:220px;min-height:46px;padding:10px 16px;border-radius:14px;border:2px solid var(--linea);background:var(--tarjeta);color:var(--texto);font-size:16px}
+.buscador input:focus{border-color:var(--rosa);outline:none}
+.filtros{display:flex;gap:6px;flex-wrap:wrap}
+.filtros button{min-height:40px;padding:6px 14px;border-radius:999px;border:1px solid var(--linea);background:var(--tarjeta);color:var(--suave);font-weight:700;cursor:pointer}
+.filtros button.activo{background:var(--rosa);color:#fff;border-color:var(--rosa)}
+.tuto{display:flex;gap:14px;align-items:flex-start;padding:16px;background:var(--tarjeta);border:1px solid var(--linea);border-radius:18px;text-decoration:none;color:var(--texto);transition:transform .15s,border-color .15s}
+.tuto:hover{transform:translateY(-3px);border-color:rgba(255,121,180,.5);color:var(--texto)}
+.tuto .num{flex:none;width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font-size:24px;background:linear-gradient(135deg,var(--rosa),#7a2cc9)}
+.tuto h3{margin:0 0 4px;font-size:18px}.tuto p{margin:0;color:var(--suave);font-size:14.5px}.tuto small{color:var(--rosa2);font-weight:700}
+.lista-tutos{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:14px}
+.articulo{max-width:780px;margin:0 auto;padding-bottom:30px}
+.articulo h1{margin-top:6px}
+.articulo .info{color:var(--suave);font-size:14px;margin-bottom:20px}
+.prosa{font-size:17px}
+.prosa h2{font-size:24px;margin:1.6em 0 .5em;color:var(--oro)}.prosa h3{margin:1.3em 0 .4em}
+.prosa ul,.prosa ol{padding-left:1.4em;margin:0 0 1em}.prosa li{margin:.3em 0}
+.prosa blockquote{margin:1.2em 0;padding:12px 16px;border-left:5px solid var(--oro);background:rgba(255,207,74,.08);border-radius:0 14px 14px 0}.prosa blockquote p:last-child{margin:0}
+.prosa code{font:.9em ui-monospace,Consolas,monospace;background:rgba(255,255,255,.08);padding:2px 6px;border-radius:6px}
+.prosa pre{background:#0b0410;border:1px solid var(--linea);border-radius:14px;padding:14px;overflow-x:auto}.prosa pre code{background:none;padding:0}
+.prosa img{border-radius:14px;margin:1em auto;border:1px solid var(--linea)}
+.prosa hr{border:0;border-top:1px solid var(--linea);margin:2em 0}
+.video{position:relative;aspect-ratio:16/9;margin:1.2em 0;border-radius:16px;overflow:hidden;background:#000;border:1px solid var(--linea)}
+.video iframe,.video-play{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video-play{padding:0;cursor:pointer;background:radial-gradient(circle at 50% 45%,#3a1440,#0b0410);color:#fff}
+.video-play img{width:100%;height:100%;object-fit:cover;opacity:.75}
+.video-btn{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:74px;height:52px;border-radius:14px;background:#ff0033;display:grid;place-items:center;font-size:24px;box-shadow:0 8px 24px rgba(0,0,0,.5)}
+.video-txt{position:absolute;left:12px;bottom:10px;right:12px;text-align:left;font-weight:800;text-shadow:0 2px 6px #000}
+/* acerca */
+.columnas{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px}
+.caja{background:var(--tarjeta);border:1px solid var(--linea);border-radius:var(--radio);padding:20px}
+.caja.aviso{margin:20px auto;max-width:600px;text-align:center}
+.caja h3{margin-top:0}
+/* pie */
+#pie{margin-top:40px;border-top:1px solid var(--linea);background:rgba(10,4,14,.6)}
+.pie{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center;padding:24px 18px;color:var(--suave);font-size:14px}
+.pie nav{display:flex;gap:14px;flex-wrap:wrap}.pie nav a{color:var(--suave);text-decoration:none}.pie nav a:hover{color:var(--oro)}
+.vacio{padding:30px;text-align:center;color:var(--suave)}
+@media (max-width:480px){.envoltura{padding:0 14px}.rejilla{grid-template-columns:1fr}.lista-tutos{grid-template-columns:1fr}.botones .btn{font-size:13.5px}}

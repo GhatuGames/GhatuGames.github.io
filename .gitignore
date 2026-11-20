@@ -1,0 +1,12 @@
+# Nunca subir llaves de firma ni archivos de compilación
+*.jks
+*.keystore
+*.p12
+*.pk8
+*.pem
+*.key
+keystore/
+*.apk
+*.zip
+.DS_Store
+Thumbs.db

@@ -1,0 +1,176 @@
+==========================================================================
+  CÓMO EDITAR LA WEB DE GHATU GAMES  (guía paso a paso)
+==========================================================================
+
+La web es "estática": solo archivos HTML, CSS, JS e imágenes. No hay que
+instalar nada ni "compilar". Para cambiar contenido casi siempre basta con
+editar UNO de estos archivos con un editor de texto (Bloc de notas, VS Code,
+Notepad++… o el editor de la propia página de GitHub):
+
+  data/catalogo.js     -> juegos, apps, versiones, tamaños y ENLACES DE DESCARGA
+  data/tutoriales.js   -> lista de tutoriales
+  tutoriales/*.md      -> el texto de cada tutorial
+
+Los demás archivos (assets/js/sitio.js, assets/css/estilo.css, *.html)
+NO hace falta tocarlos.
+
+REGLA DE ORO: al editar los .js respeta las comillas '...' y pon una coma
+entre bloques { ... }. Si después de un cambio la página sale vacía, casi
+siempre falta una coma o una comilla. (Para ver el error: abre la página,
+pulsa F12 y mira la pestaña "Consola".)
+
+NUNCA subas a la web ni a GitHub las llaves de firma (.jks, .keystore,
+carpetas "keystore", contraseñas). Solo los .apk y .html ya terminados.
+
+--------------------------------------------------------------------------
+ 0) CUENTA Y ENLACES DE DESCARGA (ya configurado)
+--------------------------------------------------------------------------
+Cuenta de GitHub: GhatuGames   Repositorio: GhatuGames.github.io
+Dirección de la web: https://ghatugames.github.io
+En data/catalogo.js ya está la línea:
+    github: { usuario: 'GhatuGames', repo: 'GhatuGames.github.io' }
+TODOS los botones de descarga usan esa línea. El enlace final queda así:
+    https://github.com/GhatuGames/GhatuGames.github.io/releases/download/<tag>/<archivo>
+Solo cámbiala si algún día las descargas se mudan a otro repositorio.
+
+(Opcional) En el mismo bloque puedes poner correo, youtube, facebook y
+tiktok. Si se dejan vacíos ('') no aparecen en la web.
+
+--------------------------------------------------------------------------
+ 1) AGREGAR UN JUEGO O UNA APP NUEVA
+--------------------------------------------------------------------------
+1. Prepara las imágenes (ver punto 3) y cópialas a assets/img/items/:
+     mijuego-portada.webp   (horizontal 16:9, unos 800x450)
+     mijuego-1.webp, mijuego-2.webp ...  (capturas)
+2. Abre data/catalogo.js y copia un bloque completo, desde la llave {
+   hasta la llave } con su coma, por ejemplo el de 'honda-andina'.
+3. Pégalo donde quieras que aparezca (el orden del archivo es el orden en la
+   web; los 3 primeros juegos y las 2 primeras apps salen en el Inicio).
+4. Cambia los datos:
+     id:        'mi-juego'        (minúsculas, sin espacios ni tildes; va en la URL)
+     tipo:      'juego'  o  'app' (decide si sale en Juegos o en Apps)
+     nombre, version, genero, resumen (1-2 frases para la tarjeta)
+     nuevo:     true              (muestra la cinta "NUEVO"; bórralo después)
+     descripcion: ['párrafo 1', 'párrafo 2']
+     caracteristicas: ['punto 1', 'punto 2', ...]
+     requisitos: 'Android 6.0+ · PC con Chrome o Edge'
+     portada:   'assets/img/items/mi-juego-portada.webp'
+     icono:     (opcional) imagen cuadrada pequeña; si no tienes, borra la línea
+     capturas:  [ { img: 'assets/img/items/mi-juego-1.webp', alt: 'qué se ve' }, ... ]
+                Para capturas de teléfono en vertical agrega  vertical: true
+5. Descargas:
+     descargas: { tag: 'mi-juego-v1.0',
+       apk: { archivo: 'mi-juego-android.apk', tamano: '1,2 MB', sha256: '...' },
+       pc:  { archivo: 'mi-juego-pc.html',     tamano: '800 KB', sha256: '...' } }
+   - tag: el nombre EXACTO de la Release de GitHub donde subirás los archivos.
+   - archivo: el nombre EXACTO del archivo subido (mayúsculas incluidas).
+   - sha256 es opcional (si lo pones, sale en la ficha para verificar).
+     Cómo obtenerlo: Windows ->  certutil -hashfile archivo.apk SHA256
+                     Linux/Mac -> sha256sum archivo.apk
+   - Si no hay versión PC (o APK), borra esa línea entera.
+6. Guarda, revisa con la vista previa (punto 5) y publica (punto 6).
+
+--------------------------------------------------------------------------
+ 2) PUBLICAR UNA VERSIÓN NUEVA DE UN JUEGO QUE YA EXISTE
+--------------------------------------------------------------------------
+1. En GitHub crea una Release nueva con un tag nuevo, ej.: comando-wara-v1.3
+   y sube el .apk y el .html con los MISMOS nombres de siempre.
+2. En data/catalogo.js, en el bloque del juego, cambia:
+     version: '1.3'
+     tag: 'comando-wara-v1.3'
+     tamano (y sha256) de cada archivo.
+3. Guarda y publica. Las versiones viejas siguen disponibles en GitHub.
+
+--------------------------------------------------------------------------
+ 3) IMÁGENES
+--------------------------------------------------------------------------
+- Formato recomendado: WebP (pesa poco). JPG o PNG también funcionan.
+- Portada: horizontal 16:9 (800x450). Capturas: hasta 1000 px de ancho.
+- Intenta que cada imagen pese menos de 150 KB. Para convertir/comprimir:
+  https://squoosh.app (gratis, en el navegador) -> formato WebP, calidad 75.
+- Nombres sin espacios ni tildes: chacra-guardiana-1.webp
+
+--------------------------------------------------------------------------
+ 4) AGREGAR UN TUTORIAL
+--------------------------------------------------------------------------
+1. Crea un archivo en la carpeta tutoriales/, por ejemplo:
+     tutoriales/controles-pukara.md
+   (Lo más fácil: copia uno existente y cambia el texto.)
+2. Escribe en Markdown (texto simple):
+     # Título                     (se oculta: el título sale de la lista)
+     ## Subtítulo
+     Un párrafo normal. **negrita**, *cursiva*, `código`
+     - punto de una lista
+     1. paso numerado
+     > **Consejo:** una nota destacada
+     [texto del enlace](juegos.html)
+     ![descripción](assets/img/tutoriales/foto.webp)
+     ---                          (línea separadora)
+   VIDEO DE YOUTUBE dentro del texto: pon el enlace solo, en su propia línea:
+     https://www.youtube.com/watch?v=XXXXXXXXXXX
+   (también sirve https://youtu.be/XXXXXXXXXXX  o  [youtube: XXXXXXXXXXX])
+   El video solo se carga cuando el visitante toca "reproducir".
+   Si prefieres HTML, crea un archivo .html (solo el contenido, sin <html>
+   ni <head>) y se insertará tal cual.
+3. Abre data/tutoriales.js, copia un bloque { ... }, y cambia:
+     id:        'controles-pukara'  (la dirección será tutorial.html?id=controles-pukara)
+     titulo, resumen, categoria ('Android', 'PC', 'Apps', 'Seguridad' u otra nueva)
+     fecha:     '2026-12-01'   minutos: 3
+     archivo:   'tutoriales/controles-pukara.md'
+     youtube:   'XXXXXXXXXXX'  -> video principal arriba del texto ('' = sin video)
+     El ID es lo que va después de "v=" en el enlace de YouTube.
+4. El orden en la lista = orden en la web (los 2 primeros salen en el Inicio).
+
+--------------------------------------------------------------------------
+ 5) VER LA WEB EN TU COMPUTADORA ANTES DE PUBLICAR
+--------------------------------------------------------------------------
+- Rápido: doble clic en index.html (todo funciona menos el texto de los
+  tutoriales, porque el navegador no deja leer archivos sueltos).
+- Completo: abre una terminal en la carpeta de la web y ejecuta
+      python3 -m http.server 8000        (en Windows: py -m http.server 8000)
+  y entra a  http://localhost:8000
+
+--------------------------------------------------------------------------
+ 6) PUBLICAR EN GITHUB PAGES (la primera vez)
+--------------------------------------------------------------------------
+1. Entra a https://github.com con la cuenta GhatuGames.
+2. Botón "+" -> "New repository" -> nombre EXACTO: GhatuGames.github.io
+   -> Public -> Create repository.
+   (Con ese nombre especial la web queda en la raíz: https://ghatugames.github.io)
+3. Sube los archivos de esta carpeta (todo su contenido, incluido el archivo
+   oculto .nojekyll). Opción fácil: "Add file" -> "Upload files" y arrastra
+   todo. Opción con git:
+       git init
+       git add .
+       git commit -m "Web de Ghatu Games"
+       git branch -M main
+       git remote add origin https://github.com/GhatuGames/GhatuGames.github.io.git
+       git push -u origin main
+4. En el repositorio: Settings -> Pages -> "Build and deployment" ->
+   Source: "Deploy from a branch" -> Branch: main, carpeta / (root) -> Save.
+   (En repos con este nombre suele activarse solo; verifica igual.)
+5. En 1-2 minutos la web estará en:  https://ghatugames.github.io
+6. Cada vez que cambies y subas archivos, la web se actualiza sola.
+
+--------------------------------------------------------------------------
+ 7) SUBIR LOS ARCHIVOS DE DESCARGA (RELEASES)
+--------------------------------------------------------------------------
+Los APK y HTML NO se suben con la web: van como "Release assets" (cada
+archivo puede pesar hasta 2 GB y no ocupan espacio del repositorio).
+La carpeta ghatu-web-releases/ ya tiene los 14 archivos listos y el
+MANIFIESTO.txt con el tag de cada uno.
+Para cada juego/app:
+1. En el repositorio GhatuGames.github.io: "Releases" (columna derecha) -> "Draft a new release".
+2. "Choose a tag" -> escribe el tag EXACTO (ej.: pukara-v1.1) -> "Create new tag".
+3. Título: "Pukara 1.1". Descripción: novedades (opcional).
+4. Arrastra los 2 archivos de ese tag (ej.: pukara-android.apk y pukara-pc.html).
+   Puedes adjuntar también MANIFIESTO.txt.
+5. "Publish release".
+6. Prueba un botón de descarga de la web: debe bajar el archivo.
+
+--------------------------------------------------------------------------
+ 8) DOMINIO PROPIO (más adelante, opcional)
+--------------------------------------------------------------------------
+Si luego compran un dominio (ej.: ghatugames.com): Settings -> Pages ->
+"Custom domain", escribe el dominio y sigue las instrucciones de DNS de
+GitHub. No hay que cambiar nada de la web: todos los enlaces son relativos.
