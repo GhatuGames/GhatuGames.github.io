@@ -133,7 +133,7 @@ GHATU.catalogo = [
       pc:  { archivo: 'cohete-crash-pc.html',     tamano: '45 KB', sha256: '51fba6d25778369742014c4e637336a3067f44005623f052a62244940f78287b' } }
   },
   {
-    id: 'barberia-al-dia', tipo: 'app', nombre: 'Barbería al Día', version: '1.0', nuevo: true,
+    id: 'barberia-al-dia', tipo: 'app', nombre: 'Barbería al Día', version: '1.1', nuevo: true,
     genero: 'Agenda, clientes y caja para barberías', etiquetas: ['Negocio', 'Barbería', 'Oficios'],
     portada: 'assets/img/items/barberia-al-dia-portada.webp', icono: 'assets/img/items/barberia-al-dia-icono.webp',
     resumen: 'Administra tu barbería sin internet: turnos con aviso de choques, fichas de clientes con fotos antes/después, caja diaria con cierre y comisiones, en Bs.',
@@ -148,9 +148,9 @@ GHATU.catalogo = [
       { img: 'assets/img/items/barberia-al-dia-2.webp', alt: 'Ficha de cliente con fotos antes y después (datos de ejemplo)', vertical: true },
       { img: 'assets/img/items/barberia-al-dia-3.webp', alt: 'Caja del día en la versión de PC (datos de ejemplo)' }
     ],
-    descargas: { tag: 'barberia-al-dia-v1.0',
-      apk: { archivo: 'barberia-al-dia-android.apk', tamano: '305 KB', sha256: 'e0079b3dc8fbb4826eb290b72ac9d47a8073f5c0645a92c0eacde2e833e0a01c' },
-      pc:  { archivo: 'barberia-al-dia-pc.html',     tamano: '157 KB', sha256: '922b69db9aa54676aa4d6059ea0fbbb38656445ead83a0e6791bbd63dde08df3' } }
+    descargas: { tag: 'barberia-al-dia-v1.1',
+      apk: { archivo: 'barberia-al-dia-android.apk', tamano: '305 KB', sha256: 'b3da8735f23847f74e7650c911382a2f6f441421215120ec3e3810adca9453e8' },
+      pc:  { archivo: 'barberia-al-dia-pc.html',     tamano: '157 KB', sha256: '2ae6775ecc039de6004fca4cffa384cc50946f64b14a8abdcc9f33007ff0f7ad' } }
   },
   {
     id: 'filo-fade', tipo: 'app', nombre: 'Filo y Fade', version: '1.0', nuevo: true,
