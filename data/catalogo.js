@@ -133,6 +133,26 @@ GHATU.catalogo = [
       pc:  { archivo: 'cohete-crash-pc.html',     tamano: '45 KB', sha256: '51fba6d25778369742014c4e637336a3067f44005623f052a62244940f78287b' } }
   },
   {
+    id: 'barberia-al-dia', tipo: 'app', nombre: 'Barbería al Día', version: '1.0', nuevo: true,
+    genero: 'Agenda, clientes y caja para barberías', etiquetas: ['Negocio', 'Barbería', 'Oficios'],
+    portada: 'assets/img/items/barberia-al-dia-portada.webp', icono: 'assets/img/items/barberia-al-dia-icono.webp',
+    resumen: 'Administra tu barbería sin internet: turnos con aviso de choques, fichas de clientes con fotos antes/después, caja diaria con cierre y comisiones, en Bs.',
+    descripcion: [
+      'Agenda por día y por semana con turnos pendientes, atendidos, cancelados o “no vino”, y aviso cuando dos turnos chocan con el mismo barbero. Cada cliente tiene su ficha: teléfono, corte habitual, números de peine, cumpleaños, notas, historial de visitas, total gastado y fotos antes/después desde la galería o la cámara. Un botón abre WhatsApp con el recordatorio ya escrito (tú lo envías).',
+      'La caja registra servicios, productos, propinas y pagos en efectivo, QR o tarjeta, además de los gastos. El cierre de caja te dice si el efectivo cuadra, sobra o falta, y calcula la comisión de cada barbero. El resumen mensual muestra ventas por día, servicios más vendidos y mejores clientes. Respaldo en archivo .json y ventas en CSV para Excel. Compañera de Filo y Fade.'
+    ],
+    caracteristicas: ['Agenda día/semana con aviso de choques', 'Clientes con fotos y WhatsApp', 'Caja, cierre diario y comisiones', 'Respaldo JSON y CSV · sin internet'],
+    requisitos: 'Android 6.0+ · PC con cualquier navegador moderno',
+    capturas: [
+      { img: 'assets/img/items/barberia-al-dia-1.webp', alt: 'Pantalla Hoy con turnos y caja del día (datos de ejemplo)', vertical: true },
+      { img: 'assets/img/items/barberia-al-dia-2.webp', alt: 'Ficha de cliente con fotos antes y después (datos de ejemplo)', vertical: true },
+      { img: 'assets/img/items/barberia-al-dia-3.webp', alt: 'Caja del día en la versión de PC (datos de ejemplo)' }
+    ],
+    descargas: { tag: 'barberia-al-dia-v1.0',
+      apk: { archivo: 'barberia-al-dia-android.apk', tamano: '305 KB', sha256: 'e0079b3dc8fbb4826eb290b72ac9d47a8073f5c0645a92c0eacde2e833e0a01c' },
+      pc:  { archivo: 'barberia-al-dia-pc.html',     tamano: '157 KB', sha256: '922b69db9aa54676aa4d6059ea0fbbb38656445ead83a0e6791bbd63dde08df3' } }
+  },
+  {
     id: 'filo-fade', tipo: 'app', nombre: 'Filo y Fade', version: '1.0', nuevo: true,
     genero: 'Escuela de barbería paso a paso', etiquetas: ['Educación', 'Barbería', 'Oficios'],
     portada: 'assets/img/items/filo-fade-portada.webp', icono: 'assets/img/items/filo-fade-icono.webp',
