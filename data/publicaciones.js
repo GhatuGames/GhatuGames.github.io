@@ -17,6 +17,19 @@
 window.GHATU = window.GHATU || {};
 GHATU.publicaciones = [
   {
+    id: 'web-deportes',
+    titulo: 'Ghatu Deportes: fútbol boliviano y del mundo, al minuto',
+    fecha: '2026-11-23', categoria: 'Proyectos',
+    imagen: 'assets/img/publicaciones/web-deportes.webp',
+    resumen: 'Nuestra nueva web junta cada hora los titulares deportivos de medios bolivianos e internacionales, con enlace a cada nota.',
+    texto: [
+      '**Ghatu Deportes** es una página pensada para el celular que reúne en un solo lugar los titulares del **fútbol boliviano** (Bolívar, The Strongest, Always Ready, la Verde y más), las **copas** (Libertadores, Sudamericana, Champions), las selecciones y **otros deportes**.',
+      'Se actualiza sola cada hora con los canales RSS públicos de medios como El Deber, Opinión, Red Uno, El Diario, AS, Infobae, Olé y Mundo Deportivo, además de búsquedas de Google Noticias. Tiene pestañas por sección, buscador y modo claro/oscuro.',
+      'Solo mostramos el titular, el medio, la fecha y un resumen corto: cada noticia se lee completa en el sitio de su medio. Sin anuncios, sin cuentas y sin rastreo.'
+    ],
+    descarga: { texto: 'Visitar Ghatu Deportes', url: 'https://ghatugames.github.io/deportes/', tamano: '' }
+  },
+  {
     id: 'web-six-circle',
     titulo: 'Hicimos la web oficial de Six Circle',
     fecha: '2026-11-20', categoria: 'Proyectos',
