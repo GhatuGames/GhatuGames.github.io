@@ -26,7 +26,7 @@ GHATU.publicaciones = [
       'Además de juegos y apps, en Ghatu Games también hacemos páginas web. La primera fue para **Six Circle**, banda boliviana de rock y metal.',
       'La web reúne sus lanzamientos con enlaces a Spotify, Apple Music, YouTube Music, Amazon Music, Deezer y Qobuz, su reproductor de Spotify, sus videos de YouTube y sus redes. Es liviana, funciona bien en el celular y los videos solo se cargan cuando los tocas.'
     ],
-    descarga: { texto: 'Visitar la web de Six Circle', url: 'https://ghatugames.github.io/sixcircle/', tamano: '' }
+    descarga: { texto: 'Visitar la web de Six Circle', url: 'https://sixcircleoficialband.github.io/', tamano: '' }
   },
   {
     id: 'lanzamiento-web',
